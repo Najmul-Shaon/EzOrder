@@ -25,7 +25,7 @@ const Banner = () => {
       >
         <SwiperSlide>
           <div className="bg-[#FBE9DF] font-Inter h-screen md:h-auto">
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 md:px-16">
+            <div className="max-w-screen-xl mx-auto px-2 sm:px-6 md:px-16">
               <div className="flex flex-col md:flex-row items-center">
                 <div className="py-10 space-y-4 flex-shrink-0">
                   <div className="flex items-center gap-x-2">
@@ -63,7 +63,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="bg-[#FBE9DF] font-Inter h-screen md:h-auto">
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 md:px-16">
+            <div className="max-w-screen-xl mx-auto px-2 sm:px-6 md:px-16">
               <div className="flex flex-col md:flex-row items-center justify-between gap-2 lg:gap-48">
                 <div className="space-y-4 py-10">
                   <div className="flex items-center gap-x-2">
@@ -101,7 +101,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="bg-[#FFCB67] font-Inter h-screen md:h-auto">
-            <div className="max-w-7xl mx-auto px-2 sm:px-6 md:px-16">
+            <div className="max-w-screen-xl mx-auto px-2 sm:px-6 md:px-16">
               <div className="flex flex-col md:flex-row items-center justify-between py-8">
                 <div className="hidden lg:block">
                   <Slide>

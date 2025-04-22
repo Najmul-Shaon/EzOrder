@@ -1,5 +1,5 @@
 const ProductsCard = ({ product }) => {
-  console.log(product?.name);
+  console.log(product);
   return (
     <div className="card bg-base-100 shadow-sm hover:border hover:border-red-200">
       <figure className="px-2 pt-2">

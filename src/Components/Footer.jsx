@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="bg-[#FFF6F0] text-gray-700 px-6 md:px-4 pt-20 pb-6">
-      <div className=" max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className=" max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Store Info */}
         <div className="space-y-2 ">
           <h3 className="text-4xl font-bold mt-10 ">BookBridge</h3>
@@ -62,7 +62,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+      <div className="max-w-screen-xl mx-auto mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
         <p className="text-xs font-Inter">
           © 2025 EzOrder. All Rights Reserved
         </p>
