@@ -1,2 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+  /* google font  */
+  --font-open-sans: "Open Sans", "sans-serif";
+}
+
+/* Custom CSS Here */
+
+.active {
+  color: #d62928;
+}
+
+.menu {
+  :where(
+      li:not(.menu-title, .disabled)
+        > *:not(ul, details, .menu-title):not(
+          .menu-active,
+          :active,
+          .btn
+        ):hover,
+      li:not(.menu-title, .disabled)
+        > details
+        > summary:not(.menu-title):not(.menu-active, :active, .btn):hover
+    ) {
+    /* cursor: pointer; */
+    background-color: transparent;
+    color: #d62928;
+  }
+}
+
+.menu {
+  & :where(li) {
+    & > :not(ul, .menu-title, details, .btn):active,
+    & > :not(ul, .menu-title, details, .btn).menu-active,
+    & > details > summary:active {
+      color: black;
+      background-color: transparent;
+    }
+  }
+}
