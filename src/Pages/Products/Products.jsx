@@ -31,7 +31,7 @@ const Products = () => {
   }
   if (!isLoading && !isError && products.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-screen-xl mx-auto">
         {products.map((product) => (
           <ProductsCard key={product.id} product={product} />
         ))}
