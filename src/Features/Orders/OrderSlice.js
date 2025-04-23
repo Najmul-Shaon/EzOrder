@@ -41,7 +41,11 @@ const orderSlice = createSlice({
         state.quantities[productId] = current - 1;
       }
     },
+    resetQuantities: (state) => {
+      state.quantities = {};
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(postOrder.pending, (state) => {
@@ -61,7 +65,7 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setQuantity, incrementQuantity, decrementQuantity } =
+export const { setQuantity, incrementQuantity, decrementQuantity, resetQuantities } =
   orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -2,18 +2,17 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../Features/Products/productsSlice";
-import { postOrder } from "../../Features/Orders/OrderSlice";
+import { postOrder, resetQuantities } from "../../Features/Orders/OrderSlice";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const OrderForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { products } = useSelector((state) => state.products);
 
   const { quantities } = useSelector((state) => state.order);
-
-  const { isLoading, isSuccess, isError, error } = useSelector(
-    (state) => state.order
-  );
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -71,7 +70,30 @@ const OrderForm = () => {
       delivery_charge: 80,
     };
     console.log(finalOrder);
-    dispatch(postOrder(finalOrder));
+    dispatch(postOrder(finalOrder))
+      .unwrap()
+      .then((res) => {
+        Swal.fire({
+          title: "Order Placed Successfully",
+          text: "Thank you for your purchase!",
+          icon: "success",
+          confirmButtonText: "Go to Products Page",
+        }).then(() => {
+          // Reset quantities in Redux store
+          dispatch(resetQuantities());
+          // Redirect to the products page
+          navigate("/products"); // Use navigate for redirection
+        });
+      })
+      .catch((error) => {
+        // Handle error (e.g., show error alert)
+        Swal.fire({
+          title: "Order Failed",
+          text: "There was an error placing your order. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      });
   };
   return (
     <div className="py-24 max-w-3xl mx-auto px-4 font-open-sans">
