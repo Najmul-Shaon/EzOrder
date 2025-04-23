@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../Features/productsSlice";
+import { fetchProducts } from "../../Features/Products/productsSlice";
 import ProductsCard from "../../Components/ProductsCard";
 import SectionTitle from "../../Components/SectionTitle";
 import { Link, useLocation } from "react-router-dom";
