@@ -45,6 +45,6 @@
 .divider-secondary {
   &:before,
   &:after {
-    background-color: #d62928 /* var(--color-secondary) */;
+    background-color: #d62928 
   }
 }
