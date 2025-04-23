@@ -2,11 +2,13 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../Features/productsSlice";
+import { fetchProducts } from "../../Features/Products/productsSlice";
 import ProductsCard from "../../Components/ProductsCard";
 import SectionTitle from "../../Components/SectionTitle";
+import { Link, useLocation } from "react-router-dom";
 
 const Products = () => {
+  const location = useLocation();
   const { products, isLoading, isError, error } = useSelector(
     (state) => state.products
   );
@@ -15,8 +17,6 @@ const Products = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
-  console.log(products);
 
   let content;
 
@@ -41,11 +41,20 @@ const Products = () => {
   }
 
   return (
-    <div className="font-open-sans max-w-screen-xl mx-auto py-24">
+    <div className="font-open-sans max-w-screen-xl mx-auto py-24 px-4">
       <div className="pb-4">
         <SectionTitle header={"Explore from best items"} />
       </div>
       {content}
+      {location.pathname === "/" && (
+        <div className="divider divider-center divider-secondary py-12">
+          <Link to="/products">
+            <button className="text-white uppercase tracking-widest text-xs border-0 btn btn-sm bg-[#d62928] hover:bg-[#FFB237]">
+              View All
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
