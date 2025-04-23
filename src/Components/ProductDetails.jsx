@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchProducts } from "../Features/Products/productsSlice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { TbCurrencyTaka, TbHanger } from "react-icons/tb";
 import { TiTick } from "react-icons/ti";
 import { HiOutlineShoppingBag } from "react-icons/hi";
@@ -9,40 +9,33 @@ import { CiHeart } from "react-icons/ci";
 import { MdOutlineCompareArrows } from "react-icons/md";
 import { FaFacebookF, FaFacebookMessenger } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
+import {
+  decrementQuantity,
+  incrementQuantity,
+  setQuantity,
+} from "../Features/Orders/OrderSlice";
 
 const ProductDetails = () => {
-  const [quantity, setQuantity] = useState(1);
-
-  const decrease = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
-  };
-
-  const increase = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleInputChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (!isNaN(value) && value > 0) {
-      setQuantity(value);
-    } else if (e.target.value === "") {
-      setQuantity("");
-    }
-  };
   const { products, isLoading } = useSelector((state) => state.products);
+  const { quantity, quantities } = useSelector((state) => state.order);
+
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const idNum = parseInt(id);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-  const { id } = useParams();
-  const idNum = parseInt(id);
+
+  useEffect(() => {
+    if (quantities[idNum] === undefined) {
+      dispatch(setQuantity({ productId: idNum, quantity: 1 }));
+    }
+  }, [quantities, idNum, dispatch]);
 
   const desiredProduct = products.filter(
     (singleProduct) => singleProduct.id === idNum
   );
-
-  console.log(desiredProduct[0]);
 
   const discountDate = desiredProduct[0]?.discount_date;
 
@@ -52,6 +45,23 @@ const ProductDetails = () => {
     return new Date(discountDate) > today;
   };
   const hasValidDiscount = isValidDiscount(discountDate);
+
+  const decrease = () => {
+    dispatch(decrementQuantity(idNum));
+  };
+
+  const increase = () => {
+    dispatch(incrementQuantity(idNum));
+  };
+
+  const handleInputChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value) && value > 0) {
+      dispatch(setQuantity({ productId: idNum, quantity: value })); // Dispatch set quantity action
+    } else if (e.target.value === "") {
+      dispatch(setQuantity({ productId: idNum, quantity: "" })); // Handle empty input
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto py-24 font-open-sans px-4">
@@ -129,7 +139,7 @@ const ProductDetails = () => {
                 </button>
                 <input
                   type="text"
-                  value={quantity}
+                  value={quantities[idNum] || ""}
                   onChange={handleInputChange}
                   className="w-12 text-center border-l border-r border-gray-300 outline-none"
                 />
@@ -147,10 +157,12 @@ const ProductDetails = () => {
                   Add to Cart <HiOutlineShoppingBag className="text-lg ml-1" />
                 </button>
               </div>
-              <div className="">
-                <button className="text-white uppercase tracking-widest text-xs border-0 btn btn-sm w-full bg-[#d62928] hover:bg-[#FFB237]">
-                  Buy Now
-                </button>
+              <div>
+                <Link to={"/product/order"}>
+                  <button className="text-white uppercase tracking-widest text-xs border-0 btn btn-sm w-full bg-[#d62928] hover:bg-[#FFB237]">
+                    Buy Now
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="flex justify-between gap-4">

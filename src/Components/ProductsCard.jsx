@@ -2,10 +2,18 @@ import { useState } from "react";
 import { Zoom } from "react-awesome-reveal";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { incrementQuantity } from "../Features/Orders/OrderSlice";
 
 const ProductsCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const increase = (id) => {
+    dispatch(incrementQuantity(id));
+  };
 
   const discountDate = product?.discount_date;
 
@@ -14,8 +22,12 @@ const ProductsCard = ({ product }) => {
     const today = new Date();
     return new Date(discountDate) > today;
   };
-
   const hasValidDiscount = isValidDiscount(discountDate);
+
+  const finalPrice = hasValidDiscount
+    ? parseInt(product?.price) - parseInt(product?.discount_amount)
+    : product?.price;
+
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
@@ -61,15 +73,15 @@ const ProductsCard = ({ product }) => {
             )}
             <p className="flex items-center text-[#d62928] text-base font-semibold">
               <TbCurrencyTaka />
-              {hasValidDiscount
-                ? parseInt(product?.price) - parseInt(product?.discount_amount)
-                : product?.price}
+              {finalPrice}
             </p>
           </div>
           <div>
-            <button className="text-white uppercase tracking-widest text-xs border-0 btn btn-sm bg-[#d62928] hover:bg-[#FFB237]">
-              Buy Now
-            </button>
+            <Link onClick={() => increase(product?.id)} to={"/product/order"}>
+              <button className="text-white uppercase tracking-widest text-xs border-0 btn btn-sm bg-[#d62928] hover:bg-[#FFB237]">
+                Buy Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -18,8 +18,6 @@ const Products = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  console.log(products);
-
   let content;
 
   if (isLoading) {

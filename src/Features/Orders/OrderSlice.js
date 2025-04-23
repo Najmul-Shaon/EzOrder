@@ -7,6 +7,7 @@ const initialState = {
   isError: false,
   error: null,
   orderResponse: null,
+  quantities: {},
 };
 
 export const postOrder = createAsyncThunk(
@@ -20,6 +21,27 @@ export const postOrder = createAsyncThunk(
 const orderSlice = createSlice({
   name: "order",
   initialState,
+  reducers: {
+    setQuantity: (state, action) => {
+      const { productId, quantity } = action.payload;
+      state.quantities[productId] = quantity;
+    },
+    incrementQuantity: (state, action) => {
+      const id = action.payload;
+      if (!state.quantities[id]) {
+        state.quantities[id] = 1;
+      } else {
+        state.quantities[id]++;
+      }
+    },
+    decrementQuantity: (state, action) => {
+      const productId = action.payload;
+      const current = state.quantities[productId] || 1;
+      if (current > 1) {
+        state.quantities[productId] = current - 1;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(postOrder.pending, (state) => {
@@ -38,5 +60,8 @@ const orderSlice = createSlice({
       });
   },
 });
+
+export const { setQuantity, incrementQuantity, decrementQuantity } =
+  orderSlice.actions;
 
 export default orderSlice.reducer;
