@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../Features/productsSlice";
 import ProductsCard from "../../Components/ProductsCard";
+import SectionTitle from "../../Components/SectionTitle";
 
 const Products = () => {
   const { products, isLoading, isError, error } = useSelector(
@@ -31,7 +32,7 @@ const Products = () => {
   }
   if (!isLoading && !isError && products.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-screen-xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {products.map((product) => (
           <ProductsCard key={product.id} product={product} />
         ))}
@@ -39,7 +40,14 @@ const Products = () => {
     );
   }
 
-  return <>{content}</>;
+  return (
+    <div className="font-open-sans max-w-screen-xl mx-auto py-24">
+      <div className="pb-4">
+        <SectionTitle header={"Explore from best items"} />
+      </div>
+      {content}
+    </div>
+  );
 };
 
 export default Products;
