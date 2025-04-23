@@ -17,7 +17,7 @@ import {
 
 const ProductDetails = () => {
   const { products, isLoading } = useSelector((state) => state.products);
-  const { quantity, quantities } = useSelector((state) => state.order);
+  const { quantities } = useSelector((state) => state.order);
 
   const dispatch = useDispatch();
   const { id } = useParams();

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../Features/Products/productsSlice";
+import { postOrder } from "../../Features/Orders/OrderSlice";
 
 const OrderForm = () => {
   const dispatch = useDispatch();
@@ -10,26 +11,21 @@ const OrderForm = () => {
 
   const { quantities } = useSelector((state) => state.order);
 
+  const { isLoading, isSuccess, isError, error } = useSelector(
+    (state) => state.order
+  );
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
   const orderedProducts = products.filter((product) => quantities[product.id]);
 
-  // const desiredProduct = products.filter(
-  //   (singleProduct) => singleProduct.id === idNum
-  // );
-
-  // const product = desiredProduct[0];
-  // const discountDate = desiredProduct[0]?.discount_date;
-
   const isValidDiscount = (discountDate) => {
     if (!discountDate) return false;
     const today = new Date();
     return new Date(discountDate) > today;
   };
-
-  // const hasValidDiscount = isValidDiscount(discountDate);
 
   let subTotal = 0;
 
@@ -54,18 +50,29 @@ const OrderForm = () => {
     );
   });
 
-  // const actualPrice = hasValidDiscount
-  //   ? parseInt(product?.price) - parseInt(product?.discount_amount)
-  //   : parseInt(product?.price);
-
-  // const totalPrice = actualPrice * quantity;
-
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    const finalOrder = {
+      product_ids: Object.keys(quantities),
+      s_product_qty: Object.values(quantities),
+      c_phone: data?.userPhone,
+      c_name: data?.userName,
+      courier: data?.courier,
+      address: data?.userAddress,
+      advance: null,
+      cod_amount: subTotal,
+      discount_amount: null,
+      delivery_charge: 80,
+    };
+    console.log(finalOrder);
+    dispatch(postOrder(finalOrder));
+  };
   return (
     <div className="py-24 max-w-3xl mx-auto px-4 font-open-sans">
       <div className="divider divider-center divider-secondary">
