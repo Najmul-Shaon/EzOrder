@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "./Products/ProductsApi";
+import { getProducts } from "./ProductsApi";
 
 const initialState = {
   products: [],

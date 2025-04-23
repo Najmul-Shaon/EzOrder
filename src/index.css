@@ -41,3 +41,10 @@
     }
   }
 }
+
+.divider-secondary {
+  &:before,
+  &:after {
+    background-color: #d62928 
+  }
+}
