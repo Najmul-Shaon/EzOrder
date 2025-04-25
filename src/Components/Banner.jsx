@@ -3,10 +3,6 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import books from "../assets/bannerImages/books.png";
-import book1 from "../assets/bannerImages/book-1.png";
-import book2 from "../assets/bannerImages/book-2.png";
-import singleBook from "../assets/bannerImages/slingleBook.png";
 import img1 from "../assets/bannerImages/img1.png";
 import img2 from "../assets/bannerImages/img2.png";
 import img3 from "../assets/bannerImages/img3.png";
@@ -23,8 +19,7 @@ const Banner = () => {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        // modules={[Pagination, Autoplay]}
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         className="mySwiper"
       >
         <SwiperSlide>
