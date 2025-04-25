@@ -2,6 +2,8 @@
 
 EzOrder is a dynamic product listing and ordering application built with React.js, Redux, Tailwind CSS, and Vite. It allows users to browse and order products seamlessly.
 
+- [Live-Link](https://ezorder-nh.netlify.app)
+
 ## Features
 
 - **Product Listing**: Display products dynamically.
