@@ -7,6 +7,9 @@ import books from "../assets/bannerImages/books.png";
 import book1 from "../assets/bannerImages/book-1.png";
 import book2 from "../assets/bannerImages/book-2.png";
 import singleBook from "../assets/bannerImages/slingleBook.png";
+import img1 from "../assets/bannerImages/img1.png";
+import img2 from "../assets/bannerImages/img2.png";
+import img3 from "../assets/bannerImages/img3.png";
 import { Slide, Zoom } from "react-awesome-reveal";
 import { IoPricetagsOutline } from "react-icons/io5";
 const Banner = () => {
@@ -20,7 +23,8 @@ const Banner = () => {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        modules={[Pagination, Autoplay]}
+        // modules={[Pagination, Autoplay]}
+        modules={[Pagination]}
         className="mySwiper"
       >
         <SwiperSlide>
@@ -36,7 +40,7 @@ const Banner = () => {
                   </div>
                   <Slide cascade>
                     <h2 className="text-5xl  leading-snug">
-                      The design <br /> of George Cetara
+                      Elegant Winter <br /> Vibes Are Here
                     </h2>
                     <p className="uppercase text-xs">
                       Pre-Order The Magic Today. Relase 24 DECEMBER 2021
@@ -52,7 +56,7 @@ const Banner = () => {
                   <Slide direction="right">
                     <img
                       className="mt-12 md:mt-0 h-auto w-lg md:w-full"
-                      src={books}
+                      src={img2}
                       alt="Image"
                     />
                   </Slide>
@@ -74,7 +78,8 @@ const Banner = () => {
                   </div>
                   <Slide cascade>
                     <h2 className="text-5xl  leading-snug">
-                      The Story About <br /> Ms. Rooster
+                      Stay Warm with
+                      <br /> Big Savings
                     </h2>
                     <p className="uppercase   text-xl font-bold tracking-widest">
                       40% Off
@@ -90,7 +95,7 @@ const Banner = () => {
                   <Slide direction="right">
                     <img
                       className="w-sm md:w-[600px] "
-                      src={singleBook}
+                      src={img3}
                       alt="Image"
                     />
                   </Slide>
@@ -105,7 +110,7 @@ const Banner = () => {
               <div className="flex flex-col md:flex-row items-center justify-between py-8">
                 <div className="hidden lg:block">
                   <Slide>
-                    <img className="w-72" src={book1} alt="Image" />
+                    <img className="w-72" src={img1} alt="Image" />
                   </Slide>
                 </div>
                 <div className="space-y-4 flex flex-col items-center">
@@ -118,10 +123,13 @@ const Banner = () => {
                   </div>
                   <Slide direction="down">
                     <h2 className="text-5xl  leading-snug text-center">
-                      Books to Freshen up <br /> Your Bookshelf
+                      {/* Books to Freshen up <br /> Your Bookshelf  */}
+                      {/* Stay Warm with These Hot Deals */}
+                      Stay Warm with <br />
+                      These Hot Deals
                     </h2>
                     <p className="uppercase text-xs text-center">
-                      Only 2 days: November 11th & 12th{" "}
+                      Only 2 days: April 28th & 29th{" "}
                     </p>
                   </Slide>
                   <Zoom delay={500}>
@@ -132,7 +140,7 @@ const Banner = () => {
                 </div>
                 <div className="mt-10">
                   <Slide direction="right">
-                    <img className="w-72" src={book2} alt="Image" />
+                    <img className="w-72" src={img1} alt="Image" />
                   </Slide>
                 </div>
               </div>

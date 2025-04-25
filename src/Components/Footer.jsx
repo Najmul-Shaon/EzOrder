@@ -4,15 +4,13 @@ const Footer = () => {
       <div className=" max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Store Info */}
         <div className="space-y-2 ">
-          <h3 className="text-4xl font-bold mt-10 ">BookBridge</h3>
+          <h3 className="text-4xl font-bold mt-10 ">EzOrder</h3>
           <p className="text-sm  lg:px-12">— STORE —</p>
           <address className="not-italic font-Inter text-sm mt-2 mb-0">
-            2005 Stokes Isle Apt. 896,
-            <br />
-            Venaville 10010, USA
+            Basila, Mohammadpur, Dhaka-1207
           </address>
-          <p className="text-sm font-Inter">info@yourdomain.com</p>
-          <p className="text-sm font-Inter">(+68) 120034509</p>
+          <p className="text-sm font-Inter">info@ezorder.com</p>
+          <p className="text-sm font-Inter">+8801721933810</p>
         </div>
 
         {/* Customer Service */}
