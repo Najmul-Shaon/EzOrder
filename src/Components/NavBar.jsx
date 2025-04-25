@@ -85,8 +85,8 @@ const Navbar = () => {
                       to={"/"}
                       className="flex gap-0  relative text-gray-500 group-hover:text-white transition-colors duration-300"
                     >
-                      <span className="text-yellow-600">B</span>ook
-                      <span className="text-red-600">B</span>ridge
+                      <span className="text-yellow-600">E</span>z
+                      <span className="text-red-600">O</span>rder
                     </Link>
                   </li>
                   <div className="font-semibold font-Inter">{links}</div>
@@ -112,7 +112,7 @@ const Navbar = () => {
               />
             </div>
             {/* notification icon */}
-            <button className="relative text-2xl p-2">
+            <button className="relative text-2xl p-2 cursor-pointer">
               <PiBellSimpleRinging />
               {/* Notification badge */}
               {notificationCount > 0 && (
@@ -121,42 +121,15 @@ const Navbar = () => {
                 </span>
               )}
             </button>
-
-            {/* cart details start */}
-
-            <div className="drawer drawer-end z-20">
-              <input
-                id="cart-drawer"
-                type="checkbox"
-                className="drawer-toggle"
-              />
-              <div className="drawer-content h-6">
-                {/* Cart Icon as Drawer Trigger */}
-                <label
-                  htmlFor="cart-drawer"
-                  className="relative text-2xl cursor-pointer"
-                >
-                  <FaCartShopping />
-                  {cartCount >= 0 && (
-                    <span className="absolute -top-2 left-3 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
-                      {cartCount}
-                    </span>
-                  )}
-                </label>
-              </div>
-              <div className="drawer-side">
-                <label
-                  htmlFor="cart-drawer"
-                  aria-label="close sidebar"
-                  className="drawer-overlay"
-                ></label>
-                <ul className="menu bg-base-200 text-base-content min-h-full w-96 p-4">
-                  {/* <Cart /> */}
-                </ul>
-              </div>
-            </div>
-
-            {/* cart details end */}
+            {/* cart icon */}
+            <button className="relative text-2xl p-2 cursor-pointer">
+              <FaCartShopping />
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 text-xs font-semibold text-white bg-blue-500 rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </button>
 
             {/* Profile Dropdown */}
             <div className="dropdown dropdown-end relative">
